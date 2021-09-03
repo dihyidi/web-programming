@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 12px;
 }
 
 .header__title {
@@ -10,6 +9,16 @@
   font-size: 1.625rem;
   color: #37447E;
   line-height: 2.375rem;
+}
+
+.header__options {
+  display: flex;
+  margin-top: 18px;
+}
+
+.header__buttons{
+    margin-right: 3.75rem;
+  margin-top: 18px;
 }
 
 .header__buy-now {
