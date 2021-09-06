@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 1rem;
 }
 
 .header__title {
@@ -13,12 +14,11 @@
 
 .header__options {
   display: flex;
-  margin-top: 18px;
 }
 
 .header__buttons{
-    margin-right: 3.75rem;
-  margin-top: 18px;
+  margin-right: 3.75rem;
+  margin-top: 1rem;
 }
 
 .header__buy-now {

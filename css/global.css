@@ -21,7 +21,6 @@ button {
 
 .default-button {
   font-weight: 500;
-  size: 12px;
   background: #111B47;
   border-radius: 2px;
   color: #fff;
@@ -38,7 +37,6 @@ li {
   font-weight: 500;
   font-size: 2.25rem;
   color: #091133;;
-  margin-bottom: 16px;
   line-height: 3rem;
 }
 
@@ -46,7 +44,6 @@ li {
   font-size: 1rem;
   line-height: 1.625rem;
   color: #6f7cb2;
-  margin-top: 6px;
 }
 
 .img-container {
