@@ -1,8 +1,8 @@
 .hero {
-  background-image: url(../images/first-image.svg); 
+  /* background-image: url(../images/first-image.svg); 
   background-repeat: no-repeat; 
   background-position: right top; 
-  background: url(../images/first-image.svg) no-repeat right -400px top 200px; 
+  background: url(../images/first-image.svg) no-repeat right -400px top 200px;  */
   min-height: 800px;
   overflow: hidden;
 }
@@ -13,6 +13,30 @@
 
 .hero__inner {
   max-width: 540px;
+}
+
+@media screen and (max-width: 1024px) {
+  .hero__inner {
+    margin: 0 auto;
+  }
+}
+
+.hero_parent-illustration{
+  position: relative;
+}
+
+.hero_hiding-parent-illustration{
+  overflow: hidden;
+}
+
+.hero__illustration {
+  position: absolute;
+  top: 20%;
+  right: -700px;
+}
+
+.hero__illustration > img {
+  max-width: 100%;
 }
 
 .bottom {
@@ -40,4 +64,18 @@
   line-height: 1.125rem;
   color:#5D6970;
   margin-top: 6px;    
+}
+
+@media screen and (max-width: 1024px) {
+  .hero__container {
+    padding-top: 100px;
+  }
+
+  .hero__illustration {
+    display: none;
+  }
+
+  .hero__bottom {
+    flex-direction: column;
+  }
 }
