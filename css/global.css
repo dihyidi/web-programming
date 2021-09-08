@@ -4,7 +4,7 @@ body {
   color: #505F98;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 970px) {
   body {
     text-align: center;
   }
@@ -31,9 +31,10 @@ button {
   min-height: 740px;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 970px) {
   .container {
-    padding: 0 40px;
+    padding: 0 1rem;
+    min-height: 0;
   }
 }
 
@@ -66,4 +67,17 @@ li {
 
 .img-container {
   max-width: 100%;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 1000px) {
+  .bottom {
+    flex-direction: column;
+    justify-content: center;
+  }
 }

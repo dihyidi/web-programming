@@ -58,3 +58,20 @@
 .footer__social__link{
   margin-right: 30px;
 }
+
+@media screen and (max-width: 970px) {
+  .footer__navigation,
+  .footer__branding,
+  .footer__links ul {
+    flex-direction: column;
+  }
+
+  .footer__branding > * {
+    margin-bottom: 15px;
+  }
+
+  .footer__links li {
+    margin-right: 0;
+    margin-bottom: 24px;
+  }
+}
