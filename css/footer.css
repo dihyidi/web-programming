@@ -44,9 +44,13 @@
   margin-top: 20px;
 }
 
+.footer__links ul{
+  display: flex;
+  flex-direction: row;
+}
+
 .footer__links li{
-  display: inline;
-  margin-right: 60px;
+  margin-right: 4rem;
 }
 
 .footer__social {
@@ -60,18 +64,24 @@
 }
 
 @media screen and (max-width: 970px) {
-  .footer__navigation,
+  .footer__branding{
+    flex-direction: column;
+  }
+  .footer__branding__date{
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
   .footer__branding,
+  .footer__social,
   .footer__links ul {
     flex-direction: column;
   }
 
-  .footer__branding > * {
-    margin-bottom: 15px;
-  }
 
-  .footer__links li {
-    margin-right: 0;
-    margin-bottom: 24px;
+  .footer__social__link,
+  .footer__links li{
+    margin-bottom: 1rem;
   }
 }
