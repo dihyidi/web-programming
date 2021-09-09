@@ -75,6 +75,23 @@ li {
     justify-content: space-between;
 }
 
+p {
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-top: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-top: 0%;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 1000px) {
   .bottom {
     flex-direction: column;

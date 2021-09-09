@@ -1,14 +1,10 @@
 .hero {
-  /* background-image: url(../images/first-image.svg); 
-  background-repeat: no-repeat; 
-  background-position: right top; 
-  background: url(../images/first-image.svg) no-repeat right -400px top 200px;  */
   min-height: 800px;
   overflow: hidden;
 }
 
 .hero > .container{
-  padding: 120px 0 140px;
+  padding-bottom: 140px;
 }
 @media screen and (max-width: 1000px) {
   .hero > .container {
@@ -51,10 +47,12 @@
   max-width: 100%;
 }
 
-
 .mini-container {
     max-width: 255px;
     margin-top: 80px;
+  
+  animation-duration: 10s;
+  animation-name: floating;
 }
 @media screen and (max-width: 1000px) {
   .mini-container {
@@ -76,5 +74,15 @@
   font-size: 0.75rem;
   line-height: 1.125rem;
   color:#5D6970;
-  margin-top: 6px;    
+  margin-top: 6px;
+}
+
+  
+@keyframes floating {
+  0% {
+    transform: translateY(20px);
+  }
+  50% {
+    transform: translateY(0);
+  }
 }
