@@ -1,0 +1,12 @@
+.pricing__container{
+    padding-top: 60px;
+}
+
+.inner__pricing{
+    max-width: 730px;
+}
+
+.buy-button{
+    margin-top: 30px;
+    width: 189px;
+}
