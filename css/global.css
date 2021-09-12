@@ -75,8 +75,8 @@ li {
     justify-content: space-between;
 }
 
-p {
-  animation-duration: 3s;
+img {
+  animation-duration: 5s;
   animation-name: slidein;
 }
 
