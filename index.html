@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Films App</title>
+
+    <link rel="stylesheet" href="./css/global.css" />
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="container">
+<header>
+        <div class="header">
+        <div class="header_name">My Films</div>
+        <div class="search">
+            <input class="search_input" id="search_input" type="text" placeholder="Type something..."/>
+            <button class="search_button" id="search_button" type="button">
+                Search
+            </button>
+            <button class="clear search_button" id="clear_search_button" type="button">
+                Clear
+            </button>
+            </div>
+    </div></header>
+
+    <div class="content">
+            <!-- ASIDE -->
+    <aside class="aside">
+        <h2>Manage films</h2>
+        <div class="sort">
+                Sort by the number of IMDB reviews
+                <input type="checkbox" id="sort_checkbox">
+            </label>
+        </div>
+
+        <hr>
+
+        <div class="count">
+            <div>Count total time of your films:</div>
+            <button class="count_button" id="count_button" type="button">Count</button>
+            <div>
+                Total time: <span id="total-time">0</span> minutes.
+            </div>
+        </div>
+    </aside>
+
+    <div class="vertical-divider"></div>
+
+    <div>
+        <ul id="items_container">
+        </ul>
+    </div>
+    </div>
+
+    </div>
+
+    <script type="module" src="./js/index.js"></script>
+</body>
+</html>
