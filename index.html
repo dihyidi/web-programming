@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Films App</title>
 
-    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
 
 </head>
 
 <body>
 
+        
+
     <!-- HEADER -->
     <div class="container">
-<header>
+    <header>
         <div class="header">
         <div class="header_name">My Films</div>
         <div class="search">
@@ -28,9 +30,37 @@
             </div>
     </div></header>
 
-    <div class="content">
-            <!-- ASIDE -->
+    <div class="content" id="my-films">
     <aside class="aside">
+
+        <form id="add_form">
+            <h2>Create film</h2>
+        
+            <div class="form-field">
+                <label for="title_input" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title_input" />
+            </div>
+        
+            <div class="form-field">
+                <label for="description_input" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description_input" />
+            </div>
+        
+            <div class="form-field">
+                <label for="length_input" class="form-label">Length</label>
+                <input type="number" class="form-control" id="length_input" />
+            </div>
+        
+            <div class="form-field">
+                <label for="imdb_input" class="form-label">IMDB</label>
+                <input type="number" class="form-control" id="imdb_input" />
+            </div>
+        
+            <button id="submit_button" type="submit" class="default_button">
+                Submit
+            </button>
+        </form>
+
         <h2>Manage films</h2>
         <div class="sort">
                 Sort by the number of IMDB reviews
@@ -42,7 +72,7 @@
 
         <div class="count">
             <div>Count total time of your films:</div>
-            <button class="count_button" id="count_button" type="button">Count</button>
+            <button class="default_button" id="count_button" type="button">Count</button>
             <div>
                 Total time: <span id="total-time">0</span> minutes.
             </div>
