@@ -51,7 +51,6 @@ body {
 }
 
 .aside{
-    min-width: 15rem;
     padding: 1rem;
 }
 
@@ -118,4 +117,5 @@ ul li{
     border-radius: 6px;
     padding: 5px;
     width: 10rem;
+    border-style: solid;
 }

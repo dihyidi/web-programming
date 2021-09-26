@@ -6,6 +6,7 @@ import {
 } from "./dom-util.js"
 import { getAllFilms, postFilm, updateFilm } from "./api.js";
 
+const formFields = document.getElementsByClassName("form-control");
 const submitButton = document.getElementById("submit_button");
 
 const searchButton = document.getElementById("search_button");
@@ -17,6 +18,9 @@ const countButton = document.getElementById("count_button");
 let films = [];
 
 const onEditItem = (e) => {
+  if (!validateInput()) {
+    return;
+  };
   const itemId = e.target.id.replace(EDIT_BUTTON_PREFIX, "");
 
   updateFilm(itemId, getInputValues());
@@ -33,21 +37,32 @@ export const refetchAllFilms = () => {
   renderItemsList(films, onEditItem);
 };
 
+const validateInput = () => {
+  if (Array.from(formFields).filter(x => x.value == "").length != 0) {
+    alert("Please fill out required fields");
+    return false;
+  }
+}
+
 submitButton.addEventListener("click", (event) => {
-  event.preventDefault();
+  if (!validateInput()) {
+    return;
+  };
 
-  const { title, description, length, imdb } = getInputValues();
+    event.preventDefault();
 
-  clearInputs();
+    const { title, description, length, imdb } = getInputValues();
 
-  postFilm({
-    title,
-    description,
-    length,
-    imdb
-  });
+    clearInputs();
+
+    postFilm({
+      title,
+      description,
+      length,
+      imdb
+    });
   
-  refetchAllFilms();
+    refetchAllFilms();
 });
 
 searchButton.addEventListener("click", () => {
