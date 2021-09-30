@@ -38,8 +38,8 @@ export const refetchAllFilms = () => {
 };
 
 const validateInput = () => {
-  if (Array.from(formFields).filter(x => x.value == "").length != 0) {
-    alert("Please fill out required fields");
+  if (Array.from(formFields).filter(x => x.value.trim() == "").length != 0) {
+    alert("Please fill out required fields"); 
     return false;
   }
 }
