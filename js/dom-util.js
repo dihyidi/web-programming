@@ -1,4 +1,5 @@
 export const EDIT_BUTTON_PREFIX = 'edit-button-';
+export const DELETE_BUTTON_PREFIX = 'delete-button-';
 
 const titleInput = document.getElementById("title_input");
 const descriptionInput = document.getElementById("description_input");
@@ -20,25 +21,30 @@ const itemTemplate = ({ id, title, description, length, imdb }) => `
     <button id="${EDIT_BUTTON_PREFIX}${id}" type="button" class="default_button">
       Edit
     </button>
+    <button id="${DELETE_BUTTON_PREFIX}${id}" type="button" class="default_button">
+      Delete
+    </button>
   </div>
 </li>`;
 
-export const addItemToPage = ({id, title, description, length, imdb }, onEditItem) => {
+export const addItemToPage = ({id, title, description, length, imdb }, onEditItem, onDeleteItem) => {
   itemsContainer.insertAdjacentHTML(
     "afterbegin",
     itemTemplate({ id, title, description, length, imdb })
   );
 
   const editButton = document.getElementById(`${EDIT_BUTTON_PREFIX}${id}`);
+  const deleteButton = document.getElementById(`${DELETE_BUTTON_PREFIX}${id}`);
 
   editButton.addEventListener("click", onEditItem);
+  deleteButton.addEventListener("click", onDeleteItem);
 };
 
-export const renderItemsList = (items, onEditItem) => {
+export const renderItemsList = (items, onEditItem, onDeleteItem) => {
   itemsContainer.innerHTML = "";
 
   for (const item of items) {
-    addItemToPage(item, onEditItem);
+    addItemToPage(item, onEditItem, onDeleteItem);
   }
 };
 
