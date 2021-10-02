@@ -1,35 +1,29 @@
-const BASE_URL = "https://localhost:4001";
-const RESOURCE_URL = `${BASE_URL}/film`;
+var FILMS = [
+    { id:1, title:'Lorem ipsum-1', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', length:120, imdb:77 },
+    { id:2, title:'Lorem ipsum-2', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', length:115, imdb:1003 },
+    { id:3, title:'Lorem ipsum-12', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', length:97, imdb:68 },
+    { id:4, title:'Lorem ipsum-22', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', length:103, imdb:707 },
+    { id:5, title:'Lorem ipsum-32', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', length:117, imdb:802 },
+    { id:6, title:'Lorem ipsum-45', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', length:125, imdb:1631 },
+    { id:7, title:'Lorem ipsum-59', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', length:96, imdb:1254 },
+    { id:8, title:'Lorem ipsum-82', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', length:110, imdb:1389 },
+    { id:9, title:'Lorem ipsum-87', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', length:101, imdb:781 },
+    { id:10, title:'Lorem ipsum-45', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', length:103, imdb:547 },
+    { id:11, title:'Lorem ipsum-51', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', length:99, imdb:1893 }
+]
 
-const baseRequest = async ({ urlPath = "", method = "GET", body = null }) => {
-  try {
-    const reqParams = {
-      method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body
-    };
-
-    if (body) {
-      reqParams.body = JSON.stringify(body);
-    }
-
-    return await fetch(`${RESOURCE_URL}${urlPath}`, reqParams);
-  } catch (error) {
-    console.error("HTTP ERROR: ", error);
-  }
+export const getAllFilms = () => {
+  return FILMS;
 };
 
+export const postFilm = (body) => {
+  FILMS.push(body);
+}
 
-export const getAllFilms = async () => {
-  const rawResponse = await baseRequest({ method: "GET" });
-  
-  return await rawResponse.json();
-};
-
-export const postFilm = (body) => baseRequest({ method: "POST", body });
-
-export const updateFilm = (id, body) => baseRequest({ urlPath: `/${id}`, method: "PUT", body });
-
-export const deleteFilm = (id) => baseRequest({ urlPath: `/${id}`, method: "DELETE" });
+export const updateFilm = (id, body) => {
+  let idx = FILMS.findIndex(x => x.id == id);
+  FILMS[idx].title = body.title;
+  FILMS[idx].description = body.description;
+  FILMS[idx].length = body.length;
+  FILMS[idx].imdb = body.imdb;
+}

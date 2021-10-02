@@ -2,10 +2,9 @@ import {
   getInputValues,
   renderItemsList,
   EDIT_BUTTON_PREFIX,
-  DELETE_BUTTON_PREFIX,
   clearInputs
 } from "./dom-util.js"
-import { deleteFilm, getAllFilms, postFilm, updateFilm } from "./api.js";
+import { getAllFilms, postFilm, updateFilm } from "./api.js";
 
 const formFields = document.getElementsByClassName("form-control");
 const submitButton = document.getElementById("submit_button");
@@ -18,34 +17,24 @@ const countButton = document.getElementById("count_button");
 
 let films = [];
 
-const onEditItem = async (e) => {
+const onEditItem = (e) => {
   if (!validateInput()) {
     return;
   };
-
   const itemId = e.target.id.replace(EDIT_BUTTON_PREFIX, "");
-  
 
-  await updateFilm(itemId, getInputValues());
+  updateFilm(itemId, getInputValues());
   clearInputs();
 
   refetchAllFilms();
 };
 
-const onDeleteItem = async (e) => {
-  const itemId = e.target.id.replace(DELETE_BUTTON_PREFIX, "");
-
-  await deleteFilm(itemId);
-
-  refetchAllFilms();
-}
-
-export const refetchAllFilms = async () => {
-  const allFilms = await getAllFilms();
+export const refetchAllFilms = () => {
+  const allFilms = getAllFilms();
 
   films = allFilms.sort((a,b) =>b.title.localeCompare(a.title));
 
-  renderItemsList(films, onEditItem, onDeleteItem);
+  renderItemsList(films, onEditItem);
 };
 
 const validateInput = () => {
@@ -53,32 +42,38 @@ const validateInput = () => {
     alert("Please fill out required fields"); 
     return false;
   }
-  return true;
 }
 
-submitButton.addEventListener("click", async (event) => {
-  event.preventDefault();
+submitButton.addEventListener("click", (event) => {
   if (!validateInput()) {
     return;
   };
 
-  const { title, description, length, imdb } = getInputValues();
+    event.preventDefault();
 
-  clearInputs();
+    const { title, description, length, imdb } = getInputValues();
 
-  await postFilm({ title, description, length, imdb });
-  refetchAllFilms();
+    clearInputs();
+
+    postFilm({
+      title,
+      description,
+      length,
+      imdb
+    });
+  
+    refetchAllFilms();
 });
 
 searchButton.addEventListener("click", () => {
   const foundFilms = films.filter(
     (film) => film.title.search(searchInput.value) !== -1);
     
-  renderItemsList(foundFilms, onEditItem, onDeleteItem);
+  renderItemsList(foundFilms, onEditItem);
 });
 
 clearSearchButton.addEventListener("click", () => {
-  renderItemsList(films, onEditItem, onDeleteItem);
+  renderItemsList(films, onEditItem);
 
   searchInput.value = "";
 });
@@ -88,7 +83,7 @@ sortCheckbox.addEventListener("change", function (e) {
         const sortedFilms = films.sort(
             (a, b) => parseFloat(a.imdb) - parseFloat(b.imdb));
 
-        renderItemsList(sortedFilms, onEditItem, onDeleteItem);
+        renderItemsList(sortedFilms, onEditItem);
     }
     else {
         refetchAllFilms();
