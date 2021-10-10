@@ -1,0 +1,14 @@
+.home{
+    display: flex;
+    margin: 6rem;
+
+    img{
+        max-width: 630px;
+        max-height: 300px;
+    }
+
+    &Info{
+        text-align: left;
+        margin-left: 2rem;
+    }
+}
