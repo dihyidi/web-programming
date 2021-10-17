@@ -1,0 +1,15 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1rem 3rem;
+
+    min-height: 3.5rem;
+    border-bottom: 1px solid #000;
+
+    &Links{
+        display: flex;
+        flex-direction: row;
+    }
+}

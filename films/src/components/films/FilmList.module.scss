@@ -1,0 +1,13 @@
+.filmList{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style-type: none;
+
+    li{
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+        border: 2px solid #BBBB;
+    }
+}

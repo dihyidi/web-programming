@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 2rem 0 4rem;
+
+    .filters {
+        display: flex;
+        flex-direction: row;
+        margin-top: 1rem;
+
+        width: 60%;
+    }
+}
