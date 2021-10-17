@@ -8,9 +8,9 @@ export const Header = () => {
     <div className={styles.header}>
       <Logo />
       <div className={styles.headerLinks}>
-        <HeaderItem label="Home" />
-        <HeaderItem label="Catalog" />
-        <HeaderItem label="Cart" />
+        <HeaderItem label="Home" path='/home' />
+        <HeaderItem label="Catalog" path='/catalog' />
+        <HeaderItem label="Cart" path='/cart' />
       </div>
     </div>
   );

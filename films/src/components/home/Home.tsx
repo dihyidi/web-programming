@@ -1,19 +1,17 @@
-import React from "react";
-import { Film } from "../../models/film";
-import styles from "./Home.module.scss";
+import React from 'react'
+import { RouteComponentProps } from 'react-router-dom'
+import { Film } from '../../models/film'
+import { FilmList } from '../films/FilmList'
+import { Heading } from '../heading/Heading'
 
-interface HomeProps {
-  film: Film;
+type HomeProps = RouteComponentProps & {
+    films: Film[];
 }
 export const Home = (props: HomeProps) => {
-  const { title, description, length, imdb } = props.film;
-  return (
-    <div className={styles.home}>
-      <img src="https://naurok-test.nyc3.cdn.digitaloceanspaces.com/32897/images/252092_1585632086.jpg" />
-      <div className={styles.homeInfo}>
-        <h1>{title}</h1>
-        <p>{description}</p>
-      </div>
-    </div>
-  );
-};
+    return (
+        <div>
+            <Heading film={props.films[0]} />
+            <FilmList films={props.films} />
+        </div>
+    )
+}
