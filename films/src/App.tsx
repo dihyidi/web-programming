@@ -23,6 +23,7 @@ function App() {
           <Switch>
             <Route path="/home" render={(props) => <Home {...props} />} />
             <Route path="/catalog" render={(props) => <Catalog {...props} />} />
+            <Route path="/cart" render={() => <div>Coming soon...</div>} />
             <Route path="/" render={(props) => <Home {...props} />} />
           </Switch>
           <Footer />
