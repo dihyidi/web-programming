@@ -1,0 +1,16 @@
+.footer{
+    border-top: 1px solid #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+
+    &Info{
+        text-align: left;
+        width: 30rem;
+    }
+
+    &Icons{
+        display: flex;
+    }
+}
