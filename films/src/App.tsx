@@ -1,3 +1,4 @@
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,19 +10,23 @@ import { Catalog } from "./components/catalog/Catalog";
 import { Footer } from "./components/footer/Footer";
 import { Header } from "./components/header/Header";
 import { Home } from "./components/home/Home";
-import { CATALOG_FILMS } from "./constants/catalogFilms";
 import { FILMS } from "./constants/films";
+
+export const FilmContext = React.createContext(FILMS);
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Header />
-        <Switch>
-          <Route path="/home" render={(props) => <Home films={FILMS} {...props} />} />
-          <Route path="/catalog" render={(props) => <Catalog films={CATALOG_FILMS} {...props} />} />
-        </Switch>
-        <Footer />
+        <FilmContext.Provider value={FILMS}>
+          <Header />
+          <Switch>
+            <Route path="/home" render={(props) => <Home {...props} />} />
+            <Route path="/catalog" render={(props) => <Catalog {...props} />} />
+            <Route path="/" render={(props) => <Home {...props} />} />
+          </Switch>
+          <Footer />
+        </FilmContext.Provider>
       </Router>
     </div>
   );

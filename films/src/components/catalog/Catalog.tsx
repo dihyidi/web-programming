@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { RouteComponentProps } from 'react-router-dom';
-import { CatalogFilm } from '../../models/catalogFilm';
+import { FilmContext } from '../../App';
+import { Film } from '../../models/film';
 import styles from "../films/FilmList.module.scss";
 import { CatalogFilmCard } from './CatalogFilmCard';
 import { CatalogHeader } from './CatalogHeader';
 
-type CatalogProps = RouteComponentProps & {
-    films: CatalogFilm[];
-}
+type CatalogProps = RouteComponentProps;
 export const Catalog = (props: CatalogProps) => {
-    const films = props.films;
+    const films: Film[] = useContext(FilmContext)
     return (
         <div>
             <CatalogHeader />
