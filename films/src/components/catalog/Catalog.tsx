@@ -24,7 +24,7 @@ export const Catalog = (props: CatalogProps) => {
                             return isAsc ? -1 : 1;
                     }).map((film) => (
                         <li key={film.id}>
-                            <CatalogFilmCard film={film} />
+                            <CatalogFilmCard film={film} onViewMoreClick={() => props.history.push(`/catalog/${film.id}`)} />
                         </li>
                     ))}
             </ul>

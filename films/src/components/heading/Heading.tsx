@@ -6,10 +6,10 @@ interface HeadingProps {
   film: Film;
 }
 export const Heading = (props: HeadingProps) => {
-  const { title, description, length, imdb } = props.film;
+  const { title, description, imgUrl } = props.film;
   return (
     <div className={styles.heading}>
-      <img src="https://naurok-test.nyc3.cdn.digitaloceanspaces.com/32897/images/252092_1585632086.jpg" />
+      <img src={imgUrl} />
       <div className={styles.headingInfo}>
         <h1>{title}</h1>
         <p>{description}</p>

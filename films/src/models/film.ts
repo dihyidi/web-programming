@@ -5,4 +5,5 @@ export interface Film {
   length: number;
   imdb: number;
   price: number;
+  imgUrl: string;
 }

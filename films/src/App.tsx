@@ -11,6 +11,7 @@ import { Footer } from "./components/footer/Footer";
 import { Header } from "./components/header/Header";
 import { Home } from "./components/home/Home";
 import { FILMS } from "./constants/films";
+import { FilmDetails } from "./components/film-details/FilmDetails";
 import { Film } from "./models/film";
 
 export const FilmContext = React.createContext<AppContext>({} as AppContext);
@@ -49,9 +50,11 @@ function App() {
           <Header />
           <Switch>
             <Route path="/home" render={(props) => <Home {...props} />} />
-            <Route path="/catalog" render={(props) => <Catalog {...props} />} />
+            <Route exact path="/catalog" render={(props) => <Catalog {...props} />} />
             <Route path="/cart" render={() => <div>Coming soon...</div>} />
+            <Route path="/catalog/:id" render={(props) => <FilmDetails {...props} />} />
             <Route path="/" render={(props) => <Home {...props} />} />
+
           </Switch>
           <Footer />
         </FilmContext.Provider>

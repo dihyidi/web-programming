@@ -8,7 +8,7 @@ interface HeaderItemProps {
 }
 export const HeaderItem = (props: HeaderItemProps) => {
     return (
-        <NavLink className={styles.headerItem} activeClassName={styles.selected} to={props.path}>
+        <NavLink className={styles.headerItem} activeClassName={styles.selected} exact to={props.path}>
             {props.label}
         </NavLink>
     )

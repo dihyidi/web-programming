@@ -6,11 +6,11 @@ interface FilmInfoProps {
     film: Film;
 }
 export const FilmInfo = (props: FilmInfoProps) => {
-    const { title, description, length, imdb } = props.film;
+    const { title, description, length, imdb, imgUrl } = props.film;
     return (
         <div className={styles.filmCard}>
             <img
-                src="https://naurok-test.nyc3.cdn.digitaloceanspaces.com/32897/images/252092_1585632086.jpg"
+                src={imgUrl}
                 alt="card"
             />
             <h5>{title}</h5>
