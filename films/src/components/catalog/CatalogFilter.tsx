@@ -13,7 +13,7 @@ interface CatalogFilterProps {
     propertyName: keyof Film;
 }
 export const CatalogFilter = (props: CatalogFilterProps) => {
-    const { filter, setFilter } = useContext(FilmContext);
+    const { setFilter } = useContext(FilmContext);
 
     const onChangeHandler = (event: ChangeEvent<HTMLSelectElement>) => { setFilter('orderBy', { property: event.target.id, direction: event.target.value }); }
 

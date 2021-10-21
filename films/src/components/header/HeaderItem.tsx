@@ -1,9 +1,6 @@
 import React from 'react'
 import styles from "./HeaderItem.module.scss";
-import {
-    BrowserRouter as Router,
-    Link
-} from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 interface HeaderItemProps {
     label: string;
@@ -11,8 +8,8 @@ interface HeaderItemProps {
 }
 export const HeaderItem = (props: HeaderItemProps) => {
     return (
-        <Link className={styles.headerItem} to={props.path}>
+        <NavLink className={styles.headerItem} activeClassName={styles.selected} to={props.path}>
             {props.label}
-        </Link>
+        </NavLink>
     )
 }

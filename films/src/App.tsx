@@ -14,7 +14,8 @@ import { FILMS } from "./constants/films";
 import { Film } from "./models/film";
 
 export const FilmContext = React.createContext<AppContext>({} as AppContext);
-type Filter = { ["orderBy"]: { property: keyof Film, direction: string } };
+
+type Filter = { ["orderBy"]: { property: keyof Film, direction: string };["searchBy"]: { value: string } };
 interface AppContext {
   films: Film[];
   filter: Filter;
@@ -22,7 +23,7 @@ interface AppContext {
 }
 
 function App() {
-  const [filter, setFilter] = useState<Filter>({ ["orderBy"]: { property: 'id', direction: 'asc' } } as Filter);
+  const [filter, setFilter] = useState<Filter>({ ["orderBy"]: { property: 'id', direction: 'asc' }, ["searchBy"]: { value: '' } } as Filter)
 
   const setFilterCallback = useCallback(
     (key: string, value: object) => {
