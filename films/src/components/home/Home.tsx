@@ -7,7 +7,7 @@ import { Heading } from '../heading/Heading'
 
 type HomeProps = RouteComponentProps;
 export const Home = (props: HomeProps) => {
-    const films: Film[] = useContext(FilmContext)
+    const { films } = useContext(FilmContext)
     return (
         <div>
             <Heading film={films[0]} />
