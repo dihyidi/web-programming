@@ -1,0 +1,15 @@
+.filmCard {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    text-align: left;
+
+    img{
+        max-height: 200px;
+        cursor: pointer;
+    }
+
+    .actions{
+        flex-direction: row;
+    }
+}
