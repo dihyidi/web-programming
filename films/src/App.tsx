@@ -10,7 +10,6 @@ import { Catalog } from "./components/catalog/Catalog";
 import { Footer } from "./components/footer/Footer";
 import { Header } from "./components/header/Header";
 import { Home } from "./components/home/Home";
-import { FILMS } from "./constants/films";
 import { FilmDetails } from "./components/film-details/FilmDetails";
 import { Film } from "./models/film";
 
@@ -38,7 +37,7 @@ function App() {
     [],
   )
   const context: AppContext = {
-    films: FILMS,
+    films: [],
     filter: filter,
     setFilter: setFilterCallback
   }
