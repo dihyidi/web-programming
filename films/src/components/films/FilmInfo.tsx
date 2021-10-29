@@ -6,7 +6,7 @@ interface FilmInfoProps {
     film: Film;
 }
 export const FilmInfo = (props: FilmInfoProps) => {
-    const { title, description, length, imdb, imgUrl } = props.film;
+    const { title, genre, description, length, imdb, imgUrl } = props.film;
     return (
         <div className={styles.filmCard}>
             <img
@@ -14,6 +14,7 @@ export const FilmInfo = (props: FilmInfoProps) => {
                 alt="card"
             />
             <h5>{title}</h5>
+            <p>Genre: {genre}</p>
             <p>{description}</p>
             <p>Length: {length} minutes.</p>
             <p>IMDB: {imdb} reviews.</p>

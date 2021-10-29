@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,38 +12,62 @@ import { Header } from "./components/header/Header";
 import { Home } from "./components/home/Home";
 import { FilmDetails } from "./components/film-details/FilmDetails";
 import { Film } from "./models/film";
+import { getFilms } from "./api/Api";
+import { MyLoader } from "./components/loader/MyLoader";
 
 export const FilmContext = React.createContext<AppContext>({} as AppContext);
 
-type Filter = { ["orderBy"]: { property: keyof Film, direction: string };["searchBy"]: { value: string } };
+type Filter = { [key: string]: any };
+
 interface AppContext {
   films: Film[];
   filter: Filter;
-  setFilter: (key: string, value: object) => void;
+  setFilter: (key: string, value: any) => void;
+  isLoading: boolean;
 }
 
 function App() {
-  const [filter, setFilter] = useState<Filter>({ ["orderBy"]: { property: 'id', direction: 'asc' }, ["searchBy"]: { value: '' } } as Filter)
+  const [filter, setFilter] = useState<Filter>({ ['searchBy']: '' } as Filter);
+  const [films, setFilms] = useState<Film[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const setFilterCallback = useCallback(
-    (key: string, value: object) => {
+    (key: string, value: any | ((prev: any) => any)) => {
+
       setFilter((prev) => {
         return {
           ...prev,
-          [key]: value
+          [key]: typeof value === "function" ? value(prev[key]) : value
         }
       })
+
     },
     [],
   )
+
   const context: AppContext = {
-    films: [],
-    filter: filter,
-    setFilter: setFilterCallback
+    films: films,
+    filter,
+    setFilter: setFilterCallback,
+    isLoading
   }
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await getFilms(filter);
+        setFilms(res.data as Film[]);
+      }
+      catch (error) {
+        console.log(error);
+      }
+      setIsLoading(false);
+    })()
+  }, [filter])
 
   return (
     <div className="App">
+      <MyLoader isLoading={isLoading} />
       <Router>
         <FilmContext.Provider value={context}>
           <Header />
@@ -53,7 +77,6 @@ function App() {
             <Route path="/cart" render={() => <div>Coming soon...</div>} />
             <Route path="/catalog/:id" render={(props) => <FilmDetails {...props} />} />
             <Route path="/" render={(props) => <Home {...props} />} />
-
           </Switch>
           <Footer />
         </FilmContext.Provider>
@@ -63,3 +86,4 @@ function App() {
 }
 
 export default App;
+

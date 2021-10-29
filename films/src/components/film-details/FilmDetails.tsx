@@ -17,6 +17,7 @@ export const FilmDetails = (props: FilmDetailsProps) => {
                 <img src={film.imgUrl} />
                 <div className={styles.filmInfo}>
                     <h1>{film.title}</h1>
+                    <h3>{film.genre}</h3>
                     <p>{film.description}</p>
                 </div>
             </div>

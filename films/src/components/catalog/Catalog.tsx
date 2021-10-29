@@ -14,15 +14,8 @@ export const Catalog = (props: CatalogProps) => {
             <ul className={styles.filmList}>
                 {films
                     .filter(x =>
-                        x.description.includes(filter['searchBy'].value.toLowerCase()))
-                    .sort((a, b) => {
-                        const isAsc = filter['orderBy'].direction == "asc";
-
-                        if (a[filter['orderBy'].property] >= b[filter['orderBy'].property])
-                            return isAsc ? 1 : -1;
-                        else
-                            return isAsc ? -1 : 1;
-                    }).map((film) => (
+                        x.description.toLowerCase().includes((filter['searchBy'] as string).toLowerCase()))
+                    .map((film) => (
                         <li key={film.id}>
                             <CatalogFilmCard film={film} onViewMoreClick={() => props.history.push(`/catalog/${film.id}`)} />
                         </li>

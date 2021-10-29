@@ -1,7 +1,8 @@
 .filter {
     select {
         border-radius: 6px;
-        height: 2rem;
+        min-height: 2rem;
+        height: auto;
         width: 7rem;
         margin-right: 2rem;
         text-align: center;
