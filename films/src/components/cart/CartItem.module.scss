@@ -1,0 +1,15 @@
+.item {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    margin: 2rem 10%;
+    padding: 1rem;
+
+    .img {
+        width: 150px;
+        height: 100px;
+    }
+}
