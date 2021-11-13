@@ -14,6 +14,7 @@ import { FilmDetails } from "./components/film-details/FilmDetails";
 import { Film } from "./models/film";
 import { getFilms } from "./api/Api";
 import { MyLoader } from "./components/loader/MyLoader";
+import { Cart } from "./components/cart/Cart";
 
 export const FilmContext = React.createContext<AppContext>({} as AppContext);
 
@@ -74,7 +75,7 @@ function App() {
           <Switch>
             <Route path="/home" render={(props) => <Home {...props} />} />
             <Route exact path="/catalog" render={(props) => <Catalog {...props} />} />
-            <Route path="/cart" render={() => <div>Coming soon...</div>} />
+            <Route path="/cart" render={(props) => <Cart {...props} />} />
             <Route path="/catalog/:id" render={(props) => <FilmDetails {...props} />} />
             <Route path="/" render={(props) => <Home {...props} />} />
           </Switch>
