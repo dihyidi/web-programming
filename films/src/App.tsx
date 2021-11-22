@@ -15,6 +15,8 @@ import { Film } from "./models/film";
 import { getFilms } from "./api/Api";
 import { MyLoader } from "./components/loader/MyLoader";
 import { Cart } from "./components/cart/Cart";
+import { OrderForm } from "./components/order/Order";
+import { SuccessPage } from "./components/order/SuccessPage";
 
 export const FilmContext = React.createContext<AppContext>({} as AppContext);
 
@@ -76,6 +78,8 @@ function App() {
             <Route path="/home" render={(props) => <Home {...props} />} />
             <Route exact path="/catalog" render={(props) => <Catalog {...props} />} />
             <Route path="/cart" render={(props) => <Cart {...props} />} />
+            <Route path="/order" render={(props) => <OrderForm {...props} />} />
+            <Route path="/success" render={(props) => <SuccessPage {...props} />} />
             <Route path="/catalog/:id" render={(props) => <FilmDetails {...props} />} />
             <Route path="/" render={(props) => <Home {...props} />} />
           </Switch>

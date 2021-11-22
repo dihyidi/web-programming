@@ -1,7 +1,8 @@
-import { Action, combineReducers, configureStore, ThunkAction, ThunkDispatch } from '@reduxjs/toolkit'
+import { Action, AnyAction, combineReducers, configureStore, Middleware, ThunkAction, ThunkDispatch } from '@reduxjs/toolkit'
 import filmCartReducer from "./filmCartSlice";
 
 import * as Films from './filmCartSlice';
+import { ThunkMiddleware } from 'redux-thunk';
 
 export interface AppState {
     selectedFilms: Films.FilmCartState
@@ -12,7 +13,7 @@ const rootReducer = () =>
         filmCart: filmCartReducer
     });
 
-export const createStore = () => configureStore({
+export const createStore = () => configureStore<RootState, AnyAction, ReadonlyArray<Middleware<{}, RootState>>>({
     reducer: rootReducer(),
     middleware: (getDefaultMiddleware) => getDefaultMiddleware()
 })
