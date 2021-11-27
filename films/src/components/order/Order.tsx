@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import { Form, FormikProps, withFormik } from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
-import { string, object, number, SchemaOf, date } from 'yup';
+import { string, object, number, SchemaOf, date, mixed } from 'yup';
 import { Button } from '../button/Button';
 
 interface OrderForm {
@@ -9,21 +9,23 @@ interface OrderForm {
     lastName: string;
     email: string;
     cardNumber: string;
-    dueDate: Date;
-    cvv: number;
+    dueDate?: Date;
+    cvv?: number;
 }
 
 const validationSchema: SchemaOf<OrderForm> = object({
-    firstName: string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
-    lastName: string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
-    email: string().email('Invalid email').required('Required'),
-    cardNumber: string().trim().matches(/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$/).required('Required'),
-    dueDate: date().required('Required'),
-    cvv: number().lessThan(1000).moreThan(99).required('Required')
+    firstName: string().min(2, 'Too Short!').max(50, 'Too Long!').required('First name is required'),
+    lastName: string().min(2, 'Too Short!').max(50, 'Too Long!').required('Last name is required'),
+    email: string().email('Invalid email').required('Email is required'),
+    cardNumber: string().trim().matches(/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$/, 'invalid card number').required('Required'),
+    dueDate: date().required('Due date is required'),
+    cvv: mixed().required('Cvv is required!').test('isvalid', 'Cvv is invalid!', (value: number, context) => {
+        return !!value ? value.toString().length === 3 : false;
+    })
 });
 
 const InnerForm = (props: FormikProps<OrderForm>) => {
-    const { isSubmitting } = props;
+    const { isValidating } = props;
     return (
         <Form style={{
             display: "flex",
@@ -120,8 +122,8 @@ const OrderFormBasic = withFormik<OrderFormBasicProps, OrderForm>({
             lastName: '',
             email: '',
             cardNumber: '',
-            dueDate: new Date(),
-            cvv: 0
+            dueDate: undefined,
+            cvv: undefined
         };
     },
     validationSchema: validationSchema,
