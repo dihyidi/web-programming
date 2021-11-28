@@ -1,8 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import qs from 'qs';
+import { UserModel } from '../models/user';
 
-export const getFilms = (params: { [key: string]: any }) => axios.get('https://localhost:4001/Film', {
+const BASEURL = 'https://localhost:4001';
+
+export const getFilms = (params: { [key: string]: any }) => axios.get(`${BASEURL}/film`, {
     params: {
         ...params
     },
@@ -10,3 +13,7 @@ export const getFilms = (params: { [key: string]: any }) => axios.get('https://l
         return qs.stringify(params);
     }
 });
+
+export const register = (body: UserModel) => axios.post(`${BASEURL}/register`, body);
+
+export const login = (body: UserModel): Promise<boolean> => axios.post(`${BASEURL}/login`, body);

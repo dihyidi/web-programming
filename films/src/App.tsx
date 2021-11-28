@@ -17,6 +17,9 @@ import { MyLoader } from "./components/loader/MyLoader";
 import { Cart } from "./components/cart/Cart";
 import { OrderForm } from "./components/order/Order";
 import { SuccessPage } from "./components/order/SuccessPage";
+import { Login } from "./components/auth/login/Login";
+import { Registration } from "./components/auth/registration/Registration";
+import { ProtectedRoute } from "./components/protected-route/ProtectedRoute";
 
 export const FilmContext = React.createContext<AppContext>({} as AppContext);
 
@@ -33,6 +36,8 @@ function App() {
   const [filter, setFilter] = useState<Filter>({ ['searchBy']: '' } as Filter);
   const [films, setFilms] = useState<Film[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const setFilterCallback = useCallback(
     (key: string, value: any | ((prev: any) => any)) => {
@@ -73,15 +78,18 @@ function App() {
       <MyLoader isLoading={isLoading} />
       <Router>
         <FilmContext.Provider value={context}>
-          <Header />
+          {isAuthenticated && <Header setIsAuthenticated={setIsAuthenticated} />}
           <Switch>
-            <Route path="/home" render={(props) => <Home {...props} />} />
-            <Route exact path="/catalog" render={(props) => <Catalog {...props} />} />
-            <Route path="/cart" render={(props) => <Cart {...props} />} />
-            <Route path="/order" render={(props) => <OrderForm {...props} />} />
-            <Route path="/success" render={(props) => <SuccessPage {...props} />} />
-            <Route path="/catalog/:id" render={(props) => <FilmDetails {...props} />} />
-            <Route path="/" render={(props) => <Home {...props} />} />
+            <Route path="/login" render={(props) => <Login setIsAuthenticated={setIsAuthenticated} {...props} />} />
+            <Route path="/register" render={(props) => <Registration {...props} />} />
+
+            <ProtectedRoute isAuthenticated={isAuthenticated} path="/home" render={(props) => <Home {...props} />} />
+            <ProtectedRoute isAuthenticated={isAuthenticated} exact path="/catalog" render={(props) => <Catalog {...props} />} />
+            <ProtectedRoute isAuthenticated={isAuthenticated} path="/cart" render={(props) => <Cart {...props} />} />
+            <ProtectedRoute isAuthenticated={isAuthenticated} path="/order" render={(props) => <OrderForm {...props} />} />
+            <ProtectedRoute isAuthenticated={isAuthenticated} path="/success" render={(props) => <SuccessPage {...props} />} />
+            <ProtectedRoute isAuthenticated={isAuthenticated} path="/catalog/:id" render={(props) => <FilmDetails {...props} />} />
+            <ProtectedRoute isAuthenticated={isAuthenticated} path="/" render={(props) => <Home {...props} />} />
           </Switch>
           <Footer />
         </FilmContext.Provider>
