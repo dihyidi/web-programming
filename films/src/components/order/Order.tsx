@@ -14,7 +14,9 @@ interface OrderForm {
 }
 
 const validationSchema: SchemaOf<OrderForm> = object({
-    firstName: string().min(2, 'Too Short!').max(50, 'Too Long!').required('First name is required'),
+    firstName: string().required('First name is required').test('isValid', 'Name is required!', (value, context) => {
+        return !!value ? value.trim().length > 0 : false
+    }),
     lastName: string().min(2, 'Too Short!').max(50, 'Too Long!').required('Last name is required'),
     email: string().email('Invalid email').required('Email is required'),
     cardNumber: string().trim().matches(/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$/, 'invalid card number').required('Required'),
@@ -25,7 +27,6 @@ const validationSchema: SchemaOf<OrderForm> = object({
 });
 
 const InnerForm = (props: FormikProps<OrderForm>) => {
-    const { isValidating } = props;
     return (
         <Form style={{
             display: "flex",
