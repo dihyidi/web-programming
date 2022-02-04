@@ -1,0 +1,23 @@
+@mixin display-flex {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header {
+    @include display-flex;
+
+    padding: 1rem 3rem;
+
+    min-height: 3.5rem;
+    border-bottom: 1px solid #000;
+    .main {
+        @include display-flex;
+        width: 60%;
+
+        .links {
+            @include display-flex;
+        }
+    }
+}
